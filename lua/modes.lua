@@ -13,7 +13,7 @@ local default_config = {
 	set_cursor = true,
 	set_cursorline = true,
 	set_number = true,
-	ignore_filetypes = { 'NvimTree', 'TelescopePrompt' },
+	ignore_filetypes = { 'neo-tree', 'NvimTree', 'TelescopePrompt' },
 }
 local winhighlight = {
 	default = {
@@ -291,7 +291,13 @@ M.setup = function(opts)
 	---Disable managed UI for unfocused windows
 	vim.api.nvim_create_autocmd('WinLeave', {
 		pattern = '*',
-		callback = M.disable_managed_ui,
+		callback = function()
+			if
+				not vim.tbl_contains(config.ignore_filetypes, vim.bo.filetype)
+			then
+				M.disable_managed_ui()
+			end
+		end,
 	})
 
 	---Disable managed UI for ignored filetypes
