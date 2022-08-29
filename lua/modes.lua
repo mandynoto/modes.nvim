@@ -301,12 +301,6 @@ M.setup = function(opts)
 		pattern = '*',
 		callback = M.disable_managed_ui,
 	})
-
-	---Disable managed UI for ignored filetypes
-	vim.api.nvim_create_autocmd('FileType', {
-		pattern = config.ignore_filetypes,
-		callback = M.disable_managed_ui,
-	})
 end
 
 return M
