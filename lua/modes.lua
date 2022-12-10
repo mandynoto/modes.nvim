@@ -218,6 +218,14 @@ M.setup = function(opts)
 			end
 		end
 
+
+    -- 'ds' delete surround operation
+    if key == 'l' or key == '_' then
+      M.highlight('delete')
+      operator_started = true
+      return
+    end
+
 		if key == utils.replace_termcodes('<esc>') then
 			M.reset()
 			return
