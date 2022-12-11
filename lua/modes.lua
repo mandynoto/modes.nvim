@@ -216,13 +216,6 @@ M.setup = function(opts)
 				operator_started = true
 				return
 			end
-
-      -- 'ds' delete surround operation
-      if key == 'l'  then
-        M.highlight('delete')
-        operator_started = true
-        return
-      end
 		end
 
 
