@@ -30,6 +30,12 @@ local winhighlight = {
 		CursorLineSign = 'ModesCopyCursorLineSign',
 		CursorLineFold = 'ModesCopyCursorLineFold',
 	},
+	change = {
+		CursorLine = 'ModesChangeCursorLine',
+		CursorLineNr = 'ModesChangeCursorLineNr',
+		CursorLineSign = 'ModesChangeCursorLineSign',
+		CursorLineFold = 'ModesChangeCursorLineFold',
+	},
 	insert = {
 		CursorLine = 'ModesInsertCursorLine',
 		CursorLineNr = 'ModesInsertCursorLineNr',
