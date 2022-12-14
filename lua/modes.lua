@@ -202,6 +202,7 @@ M.setup = function(opts)
 			delete = config.line_opacity,
 			insert = config.line_opacity,
 			visual = config.line_opacity,
+			change = config.line_opacity,
 		}
 	end
 
