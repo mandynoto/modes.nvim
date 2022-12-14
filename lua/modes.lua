@@ -101,6 +101,8 @@ M.highlight = function(scene)
 	if config.set_cursor then
 		if scene == 'delete' then
 			utils.set_hl('ModesOperator', { link = 'ModesDelete' })
+		elseif scene == 'change' then
+			utils.set_hl('ModesOperator', { link = 'ModesChange' })
 		elseif scene == 'copy' then
 			utils.set_hl('ModesOperator', { link = 'ModesCopy' })
 		end
