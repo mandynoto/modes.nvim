@@ -143,6 +143,7 @@ M.define = function()
 	}
 
 	---Create highlight groups
+	vim.cmd('hi ModesChange guibg=' .. colors.change)
 	vim.cmd('hi ModesCopy guibg=' .. colors.copy)
 	vim.cmd('hi ModesDelete guibg=' .. colors.delete)
 	vim.cmd('hi ModesInsert guibg=' .. colors.insert)
