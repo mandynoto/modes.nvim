@@ -149,7 +149,7 @@ M.define = function()
 	vim.cmd('hi ModesInsert guibg=' .. colors.insert)
 	vim.cmd('hi ModesVisual guibg=' .. colors.visual)
 
-	for _, mode in ipairs({ 'Copy', 'Delete', 'Insert', 'Visual' }) do
+	for _, mode in ipairs({ 'Copy', 'Delete', 'Insert', 'Visual', 'Change' }) do
 		local def = { bg = blended_colors[mode:lower()] }
 		utils.set_hl(('Modes%sCursorLine'):format(mode), def)
 		utils.set_hl(('Modes%sCursorLineNr'):format(mode), def)
