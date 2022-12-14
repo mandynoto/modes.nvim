@@ -6,6 +6,7 @@ local default_config = {
 	colors = {},
 	line_opacity = {
 		copy = 0.15,
+		change = 0.15,
 		delete = 0.15,
 		insert = 0.15,
 		visual = 0.15,
