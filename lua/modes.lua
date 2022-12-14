@@ -130,6 +130,11 @@ M.define = function()
 			normal_bg,
 			config.line_opacity.insert
 		),
+		change = utils.blend(
+			colors.change,
+			normal_bg,
+			config.line_opacity.change
+		),
 		visual = utils.blend(
 			colors.visual,
 			normal_bg,
