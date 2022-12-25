@@ -228,6 +228,12 @@ M.setup = function(opts)
 				return
 			end
 
+			if key == 'c' then
+				M.highlight('change')
+				operator_started = true
+				return
+			end
+
 			if key == 'd' then
 				M.highlight('delete')
 				operator_started = true
