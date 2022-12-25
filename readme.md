@@ -21,11 +21,11 @@ use({
 ```lua
 require('modes').setup({
 	colors = {
+		change = '#008080',
 		copy = "#f5c359",
 		delete = "#c75c6a",
 		insert = "#78ccc5",
 		visual = "#9745be",
-		change = '#008080',
 	},
 
 	-- Set opacity for cursorline and number background
