@@ -6,8 +6,7 @@
 
 ```lua
 use({
-	'mvllow/modes.nvim',
-	tag = 'v0.2.0',
+	'mandynoto/modes.nvim',
 	config = function()
 		require('modes').setup()
 	end
