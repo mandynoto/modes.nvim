@@ -222,6 +222,11 @@ M.setup = function(opts)
 				return
 			end
 
+			if key == '`' or key == "'" then
+				operator_started = true
+				return
+			end
+
 			if key == 'y' then
 				M.highlight('copy')
 				operator_started = true
