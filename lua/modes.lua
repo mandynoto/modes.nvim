@@ -5,8 +5,8 @@ local config = {}
 local default_config = {
 	colors = {},
 	line_opacity = {
-		copy = 0.15,
 		change = 0.15,
+		copy = 0.15,
 		delete = 0.15,
 		insert = 0.15,
 		visual = 0.15,
@@ -112,13 +112,18 @@ end
 M.define = function()
 	local normal_bg = utils.get_bg('Normal', 'Normal')
 	colors = {
+		change = config.colors.change or utils.get_bg('ModesChange', '#008080'),
 		copy = config.colors.copy or utils.get_bg('ModesCopy', '#f5c359'),
 		delete = config.colors.delete or utils.get_bg('ModesDelete', '#c75c6a'),
 		insert = config.colors.insert or utils.get_bg('ModesInsert', '#78ccc5'),
 		visual = config.colors.visual or utils.get_bg('ModesVisual', '#9745be'),
-		change = config.colors.change or utils.get_bg('ModesChange', '#008080'),
 	}
 	blended_colors = {
+		change = utils.blend(
+			colors.change,
+			normal_bg,
+			config.line_opacity.change
+		),
 		copy = utils.blend(colors.copy, normal_bg, config.line_opacity.copy),
 		delete = utils.blend(
 			colors.delete,
@@ -129,11 +134,6 @@ M.define = function()
 			colors.insert,
 			normal_bg,
 			config.line_opacity.insert
-		),
-		change = utils.blend(
-			colors.change,
-			normal_bg,
-			config.line_opacity.change
 		),
 		visual = utils.blend(
 			colors.visual,
@@ -198,11 +198,11 @@ M.setup = function(opts)
 
 	if type(config.line_opacity) == 'number' then
 		config.line_opacity = {
+			change = config.line_opacity,
 			copy = config.line_opacity,
 			delete = config.line_opacity,
 			insert = config.line_opacity,
 			visual = config.line_opacity,
-			change = config.line_opacity,
 		}
 	end
 
