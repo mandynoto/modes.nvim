@@ -5,6 +5,7 @@ local config = {}
 local default_config = {
 	colors = {},
 	line_opacity = {
+		change = 0.15,
 		copy = 0.15,
 		delete = 0.15,
 		insert = 0.15,
@@ -28,6 +29,12 @@ local winhighlight = {
 		CursorLineNr = 'ModesCopyCursorLineNr',
 		CursorLineSign = 'ModesCopyCursorLineSign',
 		CursorLineFold = 'ModesCopyCursorLineFold',
+	},
+	change = {
+		CursorLine = 'ModesChangeCursorLine',
+		CursorLineNr = 'ModesChangeCursorLineNr',
+		CursorLineSign = 'ModesChangeCursorLineSign',
+		CursorLineFold = 'ModesChangeCursorLineFold',
 	},
 	insert = {
 		CursorLine = 'ModesInsertCursorLine',
@@ -94,6 +101,8 @@ M.highlight = function(scene)
 	if config.set_cursor then
 		if scene == 'delete' then
 			utils.set_hl('ModesOperator', { link = 'ModesDelete' })
+		elseif scene == 'change' then
+			utils.set_hl('ModesOperator', { link = 'ModesChange' })
 		elseif scene == 'copy' then
 			utils.set_hl('ModesOperator', { link = 'ModesCopy' })
 		end
@@ -103,12 +112,18 @@ end
 M.define = function()
 	local normal_bg = utils.get_bg('Normal', 'Normal')
 	colors = {
+		change = config.colors.change or utils.get_bg('ModesChange', '#008080'),
 		copy = config.colors.copy or utils.get_bg('ModesCopy', '#f5c359'),
 		delete = config.colors.delete or utils.get_bg('ModesDelete', '#c75c6a'),
 		insert = config.colors.insert or utils.get_bg('ModesInsert', '#78ccc5'),
 		visual = config.colors.visual or utils.get_bg('ModesVisual', '#9745be'),
 	}
 	blended_colors = {
+		change = utils.blend(
+			colors.change,
+			normal_bg,
+			config.line_opacity.change
+		),
 		copy = utils.blend(colors.copy, normal_bg, config.line_opacity.copy),
 		delete = utils.blend(
 			colors.delete,
@@ -128,12 +143,13 @@ M.define = function()
 	}
 
 	---Create highlight groups
+	vim.cmd('hi ModesChange guibg=' .. colors.change)
 	vim.cmd('hi ModesCopy guibg=' .. colors.copy)
 	vim.cmd('hi ModesDelete guibg=' .. colors.delete)
 	vim.cmd('hi ModesInsert guibg=' .. colors.insert)
 	vim.cmd('hi ModesVisual guibg=' .. colors.visual)
 
-	for _, mode in ipairs({ 'Copy', 'Delete', 'Insert', 'Visual' }) do
+	for _, mode in ipairs({ 'Copy', 'Delete', 'Insert', 'Visual', 'Change' }) do
 		local def = { bg = blended_colors[mode:lower()] }
 		utils.set_hl(('Modes%sCursorLine'):format(mode), def)
 		utils.set_hl(('Modes%sCursorLineNr'):format(mode), def)
@@ -182,6 +198,7 @@ M.setup = function(opts)
 
 	if type(config.line_opacity) == 'number' then
 		config.line_opacity = {
+			change = config.line_opacity,
 			copy = config.line_opacity,
 			delete = config.line_opacity,
 			insert = config.line_opacity,
@@ -205,8 +222,19 @@ M.setup = function(opts)
 				return
 			end
 
+			if key == '`' or key == "'" then
+				operator_started = true
+				return
+			end
+
 			if key == 'y' then
 				M.highlight('copy')
+				operator_started = true
+				return
+			end
+
+			if key == 'c' then
+				M.highlight('change')
 				operator_started = true
 				return
 			end
@@ -217,6 +245,7 @@ M.setup = function(opts)
 				return
 			end
 		end
+
 
 		if key == utils.replace_termcodes('<esc>') then
 			M.reset()
