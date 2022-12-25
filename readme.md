@@ -1,7 +1,6 @@
 # modes.nvim
 
-> Prismatic line decorations for the adventurous vim user
-> Experimental version of mvllow/modes.nvim
+> Prismatic line decorations for the adventurous vim user, an experimental version of mvllow/modes.nvim
 
 ## Usage
 
