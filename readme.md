@@ -51,6 +51,7 @@ require('modes').setup({
 
 | Highlight group | Default value   |
 | --------------- | --------------- |
+| `ModesChange`   | `guibg=#008080` |
 | `ModesCopy`     | `guibg=#f5c359` |
 | `ModesDelete`   | `guibg=#c75c6a` |
 | `ModesInsert`   | `guibg=#78ccc5` |
