@@ -116,7 +116,7 @@ M.define = function()
 		delete = config.colors.delete or utils.get_bg('ModesDelete', '#c75c6a'),
 		insert = config.colors.insert or utils.get_bg('ModesInsert', '#78ccc5'),
 		visual = config.colors.visual or utils.get_bg('ModesVisual', '#9745be'),
-		change = config.colors.change or utils.get_bg('ModesChange', '#78ccc5'),
+		change = config.colors.change or utils.get_bg('ModesChange', '#008080'),
 	}
 	blended_colors = {
 		copy = utils.blend(colors.copy, normal_bg, config.line_opacity.copy),
