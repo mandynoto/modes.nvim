@@ -72,3 +72,24 @@ require('which-key').setup({
 	},
 })
 ```
+- Some nvim-surround presets will not trigger initial modes. For example, typing and entering `d` will not change cursor color because `ds` takes priorty for deleting a surround in normal mode. A fix is to change nvim-surround mappings by prefacing them with leader key so to not start with any of the modes in normal mode like: c, d, and y.
+
+_Workaround:_
+
+```lua
+require('nvim-surround').setup({
+    move_cursor = false,
+    keymaps = {
+      insert = "<C-g>s",
+      insert_line = "<C-g>S",
+      normal = "<Leader>s",
+      normal_cur = "<Leader>ss",
+      normal_line = "<Leader>ads",
+      normal_cur_line = "<Leader>adhs",
+      visual = "S",
+      visual_line = "gS",
+      delete = "<Leader>sd",
+      change = "<Leader>sc",
+    },
+)}
+```
