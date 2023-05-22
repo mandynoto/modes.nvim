@@ -222,11 +222,6 @@ M.setup = function(opts)
 				return
 			end
 
-			if key == '`' or key == "'" then
-				operator_started = true
-				return
-			end
-
 			if key == 'y' then
 				M.highlight('copy')
 				operator_started = true
@@ -245,7 +240,6 @@ M.setup = function(opts)
 				return
 			end
 		end
-
 
 		if key == utils.replace_termcodes('<esc>') then
 			M.reset()
