@@ -241,7 +241,6 @@ M.setup = function(opts)
 			end
 		end
 
-
 		if key == utils.replace_termcodes('<esc>') then
 			M.reset()
 			return
